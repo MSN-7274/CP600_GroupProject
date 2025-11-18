@@ -2,11 +2,19 @@
    1. if config.json and main.py are in the same directory
    > python main.py
    2. If config.json and main.py are in different directories or you want to specify a .json file
-   > python main.py --config <file path>
-2. Config arameters
-   1. **sample_size**: Sample size after sampling. Can be “null”. If non-null, this parameter takes precedence; otherwise, the sample size is calculated based on “sample_ratio”.
-   2. **k_step**: Step size when automatically selecting k
-   3. **bins_per_feature**: The number of bins used when creating histograms/frequency comparisons for numerical features in distribution_diff. Higher values provide finer granularity but result in slightly slower computation; 10 is a common compromise.
+   > python main.py --config \<file path\>
+2. Config parameters (Partial)
+   1. **target_column**: label list
+   2. **sensitive_columns**: List of Sensitive Attribute Names
+   3. **non_sensitive_columns**: Can be empty. If the list is empty, the code will automatically use “All columns - Sensitive columns - Label columns” as non-sensitive features.
+   4. **sample_size**: Sample size after sampling. Can be “null”. If non-null, this parameter takes precedence; otherwise, the sample size is calculated based on “sample_ratio”.
+   5. **k_min**: The minimum k when automatically selecting k.
+   6. **k_max**: The maximum k when automatically selecting k.
+   7. **k_step**: Step size when automatically selecting k
+   8. **enable_refine**: When true, perform local swaps based on the initial sampling S to minimize distribution diff. When false, directly use S obtained from the first clustering sampling.
+   9. **max_iterations**: Maximum number of iterations in the refine phase. Each iteration involves: attempting to replace one sample in S with one sample from D\S. If this reduces the diff, the replacement is accepted.
+   10. **early_stop_rounds**: Patience threshold for early termination. If no improvement is observed over this many consecutive rounds (no positive diff), terminate refinement early.
+   11. **bins_per_feature**: The number of bins used when creating histograms/frequency comparisons for numerical features in distribution_diff. Higher values provide finer granularity but result in slightly slower computation; 10 is a common compromise.
 3. Algorithm brief intro
    1. Sampling
       1. Randomly sample a small subset from the entire dataset. Run K-means clustering on each candidate value of k (e.g., 8–32), calculating the Calinski–Harabasz index (preferably higher) and Davies–Bouldin index (preferably lower) for each k. Select the k value that yields the most optimal cluster structure by combining these two metrics.
