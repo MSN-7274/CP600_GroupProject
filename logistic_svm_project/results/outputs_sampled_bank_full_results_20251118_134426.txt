@@ -1,0 +1,21 @@
+Results for: outputs_sampled_bank_full
+Timestamp: 20251118_134426
+==================================================
+
+Logistic Regression Metrics:
+  accuracy: 0.8853
+  precision: 0.8586
+  recall: 0.8853
+  f1_score: 0.8581
+  confusion_matrix:
+[[3123   59]
+ [ 356   79]]
+
+SVM Metrics:
+  accuracy: 0.8883
+  precision: 0.8656
+  recall: 0.8883
+  f1_score: 0.8572
+  confusion_matrix:
+[[3144   38]
+ [ 366   69]]

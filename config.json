@@ -1,9 +1,10 @@
 {
   "data": {
-    "dataset_path": "./data/adult.csv",
-    "target_column": "income",
-    "sensitive_columns": ["sex","race","age","marital-status","native-country"],
+    "dataset_path": "./data/bank-full.csv",
+    "target_column": "y",
+    "sensitive_columns": ["age", "job", "marital", "education"],
     "non_sensitive_columns": [],
+    "exclude_columns": [],
     "random_state": 42
   },
   "sampling": {
@@ -26,6 +27,6 @@
   },
   "output": {
     "output_dir": "./outputs",
-    "sample_filename": "sampled_adult.csv"
+    "sample_filename": "sampled_bank_full.csv"
   }
 }

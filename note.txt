@@ -1,0 +1,11 @@
+Bank Marketing — UCI
+Size: ~45k rows
+Target: subscription to term deposit
+Sensitive: age, job, marital (sensitive depending on setup)
+Where: https://archive.ics.uci.edu/ml/datasets/Bank+Marketing
+
+Heart Disease (Cleveland) — UCI
+Size: 303 rows
+Target: heart disease presence
+Sensitive: age, sex
+Where: https://archive.ics.uci.edu/ml/datasets/heart+disease

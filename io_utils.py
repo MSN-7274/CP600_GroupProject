@@ -15,7 +15,9 @@ def ensure_output_dir(output_dir: str):
 
 # load csv
 def load_dataset(dataset_path: str) -> pd.DataFrame:
-    df = pd.read_csv(dataset_path)
+    # Handle semicolon-separated files (e.g., bank-full.csv)
+    sep = ';' if 'bank-full.csv' in dataset_path else ','
+    df = pd.read_csv(dataset_path, sep=sep)
     return df
 
 # extract non-sensitive features
@@ -23,12 +25,14 @@ def split_features(df: pd.DataFrame,data_cfg: Dict) -> Tuple[pd.DataFrame, pd.Se
     sensitive_cols = data_cfg.get("sensitive_columns", [])
     target_col = data_cfg.get("target_column", None)
     ns_cols = data_cfg.get("non_sensitive_columns", [])
+    exclude_cols = data_cfg.get("exclude_columns", [])
 
     all_cols = df.columns.tolist()
 
     if not ns_cols:
         # use all columns except sensitive + target as non-sensitive
         exclude = set(sensitive_cols)
+        exclude.update(exclude_cols)
         if target_col and target_col in all_cols:
             exclude.add(target_col)
         ns_cols = [c for c in all_cols if c not in exclude]
