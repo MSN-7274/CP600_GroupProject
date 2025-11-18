@@ -1,0 +1,31 @@
+{
+  "data": {
+    "dataset_path": "./data/adult.csv",
+    "target_column": "income",
+    "sensitive_columns": ["sex","race","age","marital-status","native-country"],
+    "non_sensitive_columns": [],
+    "random_state": 42
+  },
+  "sampling": {
+    "sample_ratio": 0.4,
+    "sample_size": null,
+    "k": null,
+    "k_min": 8,
+    "k_max": 32,
+    "k_step": 4,
+    "auto_k_method": "ch_db",
+    "cluster_method": "kmeans"
+  },
+  "optimization": {
+    "enable_refine": true,
+    "max_iterations": 500,
+    "early_stop_rounds": 100
+  },
+  "metrics": {
+    "bins_per_feature": 10
+  },
+  "output": {
+    "output_dir": "./outputs",
+    "sample_filename": "sampled_adult.csv"
+  }
+}
