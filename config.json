@@ -1,8 +1,8 @@
 {
   "data": {
-    "dataset_path": "./data/bank-full.csv",
-    "target_column": "y",
-    "sensitive_columns": ["age", "job", "marital", "education"],
+    "dataset_path": "./data/credit_card.csv",
+    "target_column": "Card Categories",
+    "sensitive_columns": ["Educational Level", "Income"],
     "non_sensitive_columns": [],
     "exclude_columns": [],
     "random_state": 42
@@ -27,6 +27,6 @@
   },
   "output": {
     "output_dir": "./outputs",
-    "sample_filename": "sampled_bank_full.csv"
+    "sample_filename": "sampled_credit_card.csv"
   }
 }

@@ -1,0 +1,25 @@
+Results for: data_credit_card
+Timestamp: 20251119_162803
+==================================================
+
+Logistic Regression Metrics:
+  accuracy: 0.8139
+  precision: 0.9325
+  recall: 0.8139
+  f1_score: 0.8652
+  confusion_matrix:
+[[1592  168   49   70]
+ [  12   48   29   30]
+ [   3    4    7    9]
+ [   0    0    3    2]]
+
+SVM Metrics:
+  accuracy: 0.8110
+  precision: 0.9320
+  recall: 0.8110
+  f1_score: 0.8577
+  confusion_matrix:
+[[1559  270   46    4]
+ [  12   80   24    3]
+ [   3   15    4    1]
+ [   0    2    3    0]]

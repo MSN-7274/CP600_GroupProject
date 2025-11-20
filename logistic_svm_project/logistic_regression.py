@@ -5,7 +5,13 @@ class LogisticRegressionModel:
         self.model = None
 
     def train(self, X_train, y_train):
-        self.model = LogisticRegression(random_state=42)
+        self.model = LogisticRegression(
+            class_weight='balanced',
+            max_iter=1000,
+            random_state=42,
+            solver='lbfgs',
+            multi_class='multinomial'
+        )
         self.model.fit(X_train, y_train)
 
     def predict(self, X_test):

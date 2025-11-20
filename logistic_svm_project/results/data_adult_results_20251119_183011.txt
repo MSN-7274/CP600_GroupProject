@@ -1,0 +1,21 @@
+Results for: data_adult
+Timestamp: 20251119_183011
+==================================================
+
+Logistic Regression Metrics:
+  accuracy: 0.7549
+  precision: 0.7969
+  recall: 0.7549
+  f1_score: 0.7678
+  confusion_matrix:
+[[5703 1711]
+ [ 683 1672]]
+
+SVM Metrics:
+  accuracy: 0.7579
+  precision: 0.8074
+  recall: 0.7579
+  f1_score: 0.7718
+  confusion_matrix:
+[[5637 1777]
+ [ 588 1767]]

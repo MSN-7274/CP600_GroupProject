@@ -112,7 +112,7 @@ def main():
                     df_local[col] = pd.to_numeric(df_local[col], errors='coerce')
         
         # Basic preprocessing
-        # Detect target column and map to 0/1
+        # Detect target column and map to 0/1 or multi-class
         target_col = None
         if 'diagnosis' in df_local.columns:
             target_col = 'diagnosis'
@@ -120,11 +120,19 @@ def main():
         elif 'y' in df_local.columns:
             target_col = 'y'
             df_local[target_col] = df_local[target_col].map({'yes': 1, 'no': 0})
+        elif 'Card_Category' in df_local.columns:
+            target_col = 'Card_Category'
+            df_local[target_col] = df_local[target_col].map({'Blue': 0, 'Silver': 1, 'Gold': 2, 'Platinum': 3})
+        elif 'income' in df_local.columns:
+            target_col = 'income'
+            df_local[target_col] = df_local[target_col].map({'<=50K': 0, '>50K': 1, '<=50K.': 0, '>50K.': 1})
 
         # Select features (exclude id and target, and only numeric for simplicity)
-        exclude_cols = ['id']
+        exclude_cols = ['id', 'CLIENTNUM']
         if target_col:
             exclude_cols.append(target_col)
+        # Exclude pre-computed prediction columns that cause data leakage
+        exclude_cols.extend([col for col in df_local.columns if col.startswith('Naive_Bayes_Classifier')])
         features_local = [col for col in df_local.columns if col not in exclude_cols and df_local[col].dtype in ['int64', 'float64']]
         X_local = df_local[features_local]
         y_local = df_local[target_col] if target_col else None
